@@ -68,17 +68,20 @@ def cli_execution(options):
         pc = len(data)
         if pc >= 2:
             status = CRITICAL
+            message['summary'] = 'CRITICAL: '
         elif pc == 1:
             status = WARNING
+            message['summary'] = 'WARNING: '
         else:
             status = OK
+            message['summary'] = 'OK: '
         return status
 
     # Check logic starts here
     data = collect_data()
     message['status'] = check(data)
     # Add summary
-    message['summary'] = format_message()
+    message['summary'] += format_message()
     # Add perfdata
     total = len(data)
     message['perfdata'] = "alerts={};1;2;0; ".format(total)
