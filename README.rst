@@ -10,15 +10,15 @@ Install
 
 Linux::
 
-    sudo pip3 install sharepoint_health --upgrade
+    sudo pip3 install sp-health --upgrade
 
 Also is possible to use::
 
-    sudo python3 -m pip install sharepoint_health --upgrade
+    sudo python3 -m pip install sp-health --upgrade
 
 On windows with python3.5::
 
-    pip install sharepoint_health --upgrade
+    pip install sp-health --upgrade
 
 For proxies add::
 
