@@ -48,7 +48,7 @@ Example usage
 Example use::
 
     > sphealth -u domain\user -p pass -s http://spurl:9876
-    Information: http://l224srv43:9876 |alerts=9;1;2;0;
+      CRITICAL: Information: http://l224srv43:9876 |alerts=9;1;2;0;
 
 TODO
 ====
