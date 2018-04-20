@@ -50,6 +50,54 @@ Example use::
     > sphealth -u domain\user -p pass -s http://spurl:9876
     Information: http://spurl:9876 |alerts=9;1;2;0;
 
+Example Command and service
+===========================
+
+Example host::
+
+    # https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/4/en/macros.html#Custom%20Variable%20Macros
+    # we use CUSTOM MACRO for these Sharepoint SERVERS
+    # ADD _SPURLMON for each host
+    # Where _SPURLMON is the name of the root URL for Sharepoint Central Administration (without /HealthReports)
+    # Also add _SPUSER and _SPPASSWORD
+    # https://github.com/pablodav/sharepoint_health_mon_plugin
+
+    define host
+        host_name		HOSTXX1
+        alias 			Sharepoint Host XX1
+        parents			SOMEDEVICE
+        _SPURLMON	    http://spurlfqdn:9876
+        _SPUSER         domain\username
+        _SPPASSWORD     somepassword
+        address			IP.ADD.RR.ESS
+        use			    generic-host
+    }
+
+Example group::
+
+    define hostgroup {
+        hostgroup_name  sharepoint_servers
+        alias			Sharepoint servers
+        members			HOSTXX1,HOSTXX2
+    }
+
+Example command::
+
+    define command{
+        command_name  check_sphealth
+        command_line  /usr/local/bin/sphealth -u '$ARG1$' -p '$ARG2$' -s '$ARG3$'
+    }
+
+Example service::
+
+    define service {
+        hostgroup_name          sharepoint_servers
+        service_description     Sharepoint_HealthMonitor
+        check_command           check_sphealth!$_HOSTSPUSER$!$_HOSTSPPASSWORD$!$_HOSTSPURLMON$
+        notes                   Check the alerts from $_HOSTSPURLMON$ for sharepoint HealthMonitor
+        use                     generic-service
+    }
+
 TODO
 ====
 
