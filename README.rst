@@ -103,3 +103,8 @@ TODO
 
 * Use hash passwords
 * Add Unit tests?
+
+Notes
+=====
+
+This command is installed and added in project: https://github.com/CoffeeITWorks/ansible_nagios4_server_plugins
