@@ -36,4 +36,4 @@ class HealthMonitor:
         """
         site = self._connect_site()
         sp_list = site.List(self.report_list) # List ex arg: 'Review Problems and solutions'
-        return sp_list.GetListItems('All Reports', rowlimit=200)
+        return sp_list.GetListItems('All Reports')
